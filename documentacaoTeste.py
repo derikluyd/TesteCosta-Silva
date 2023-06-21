@@ -2,6 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
+
 def consultar_processos(parametros):
     """
     Realiza uma consulta de processos no sistema do Tribunal Regional Federal da 2ª Região.
