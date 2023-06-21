@@ -6,11 +6,13 @@ def consultar_processos(parametros):
     url = "https://eproc.trf2.jus.br/eproc/externo_controlador.php?acao=processo_consulta_publica"
     response = requests.post(url, data=parametros)
     return response.content
+    
 
 def extrair_processos(html):
     soup = BeautifulSoup(html, "html.parser")
     processos = []
 
+    
     
     for processo_html in soup.find_all("div", class_="processo"):
         processo = {
