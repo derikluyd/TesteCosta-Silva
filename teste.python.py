@@ -11,8 +11,7 @@ def extrair_processos(html):
     soup = BeautifulSoup(html, "html.parser")
     processos = []
 
-    # Extrair informações dos processos listados na página de consulta
-    # Preencha as informações de acordo com a estrutura da página HTML
+    
     for processo_html in soup.find_all("div", class_="processo"):
         processo = {
             "numero_processo": processo_html.find("span", class_="numero_processo").text.strip(),
@@ -27,13 +26,12 @@ def extrair_detalhes_processo(html):
     soup = BeautifulSoup(html, "html.parser")
     detalhes = {}
 
-    # Extrair informações detalhadas do processo
-    # Preencha as informações de acordo com a estrutura da página HTML
+    
     detalhes["numero_processo"] = soup.find("span", class_="numero_processo").text.strip()
     detalhes["data_autuacao"] = soup.find("span", class_="data_autuacao").text.strip()
     detalhes["situacao"] = soup.find("span", class_="situacao").text.strip()
 
-    # Extrair informações das partes e representantes
+    
     detalhes["envolvidos"] = []
     for envolvido_html in soup.find_all("div", class_="envolvido"):
         envolvido = {
@@ -42,7 +40,7 @@ def extrair_detalhes_processo(html):
         }
         detalhes["envolvidos"].append(envolvido)
 
-    # Extrair informações das movimentações
+    
     detalhes["movimentacoes"] = []
     for movimentacao_html in soup.find_all("div", class_="movimentacao"):
         movimentacao = {
@@ -57,7 +55,7 @@ def persistir_dados(processos):
         for processo in processos:
             file.write(json.dumps(processo) + "\n")
 
-# Exemplo de consulta por número do processo
+
 parametros = {
     "numero_processo": "5012208-69.2019.4.02.0000"
 }
